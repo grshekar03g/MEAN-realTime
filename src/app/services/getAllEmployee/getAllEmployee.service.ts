@@ -7,7 +7,7 @@ import BASE_URL from "../../config/endPoints/urls"
     providedIn:"root"
 })
 
-export class GetAllEmployee{
+export class GetAllEmployeeService{
     constructor(public http:HttpClient){}
 
     public getEmpData():Observable<any>{

@@ -8,7 +8,7 @@ import { Observable } from "rxjs"
     
 })
 
-export class DeleteEmployee{
+export class DeleteEmployeeService{
     constructor(public http:HttpClient){}
 
     public deleteEmployee(data:any):Observable<any>{

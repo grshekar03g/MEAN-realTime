@@ -7,7 +7,7 @@ import { Observable } from "rxjs"
     providedIn:"root"
 })
 
-export class AddEmployeeServic{
+export class AddEmployeeService{
         constructor(public http:HttpClient){}
         
 

@@ -7,7 +7,7 @@ import { Observable } from "rxjs"
     providedIn:"root"
 })
 
-export class UpdateEmployee{
+export class UpdateEmployeeService{
     constructor(public http:HttpClient){}
 
     public updateEmployee(data:any):Observable<any>{
