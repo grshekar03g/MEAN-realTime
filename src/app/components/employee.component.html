@@ -2,48 +2,57 @@
 
 <div class="mat-elevation-z8">
 
-    <table mat-table [dataSource]="datasource" >
+
+  
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search here...">
+</mat-form-field>
+
+
+  
+
+    <table mat-table [dataSource]="datasource"  matSort>
 
         <ng-container matColumnDef="Select">
-            <th mat-header-cell *matHeaderCellDef> Select </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Select </th>
             <td mat-cell *matCellDef="let row"> <input type="checkbox"> </td>
           </ng-container>
 
 
           <ng-container matColumnDef="empId">
-            <th mat-header-cell *matHeaderCellDef> empId </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> EmpId </th>
             <td mat-cell *matCellDef="let row"> {{row.empId}} </td>
           </ng-container>
 
           <ng-container matColumnDef="Name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
             <td mat-cell *matCellDef="let row"> {{row.Name}} </td>
           </ng-container>
 
           <ng-container matColumnDef="Age">
-            <th mat-header-cell *matHeaderCellDef> Age </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Age </th>
             <td mat-cell *matCellDef="let row"> {{row.Age}} </td>
           </ng-container>
 
           <ng-container matColumnDef="salary">
-            <th mat-header-cell *matHeaderCellDef> salary </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Salary </th>
             <td mat-cell *matCellDef="let row"> {{row.salary}} </td>
           </ng-container>
 
           <ng-container matColumnDef="dept">
-            <th mat-header-cell *matHeaderCellDef> dept </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
             <td mat-cell *matCellDef="let row"> {{row.dept}} </td>
           </ng-container>
 
 
           <ng-container matColumnDef="DOB">
-            <th mat-header-cell *matHeaderCellDef> DOB </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
             <td mat-cell *matCellDef="let row"> {{row.DOB}} </td>
           </ng-container>
 
 
           <ng-container matColumnDef="gender">
-            <th mat-header-cell *matHeaderCellDef> gender </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
             <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
           </ng-container>
 
@@ -51,13 +60,28 @@
          
 
           <ng-container matColumnDef="languages">
-            <th mat-header-cell *matHeaderCellDef> languages </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Languages </th>
             <td mat-cell *matCellDef="let row"> {{row.languages}} </td>
           </ng-container>
 
           <ng-container matColumnDef="Actions">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
-            <td mat-cell *matCellDef="let row"> <button>Actions</button> </td>
+            <td mat-cell *matCellDef="let row"> 
+              <button mat-mini-fab color="secondary" [matMenuTriggerFor]="menu" >
+                <mat-icon>menu</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="updateEmp({'empId':row.empId,'Name':row.Name})">
+                  <mat-icon>edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="deleteEmp(row.empId)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+               
+              </mat-menu>
+            </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedCloumns"></tr>
@@ -69,5 +93,8 @@
     </table>
 
 
+    <mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
 
 </div>
+
+<ng-http-loader [backdrop]="false" [backgroundColor]="'red'" [spinner]="spinnerStyle.skWanderingCubes"></ng-http-loader>

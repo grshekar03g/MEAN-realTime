@@ -12,6 +12,13 @@ export class DeleteEmployeeService{
     constructor(public http:HttpClient){}
 
     public deleteEmployee(data:any):Observable<any>{
-        return this.http.delete(BASE_URL+"/delete",data)
+
+        const options={
+            headers:{},
+            body:data
+        }
+
+
+        return this.http.delete(BASE_URL+"/delete",options)
     }
 }
